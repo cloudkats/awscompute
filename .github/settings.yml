@@ -2,8 +2,8 @@
 _extends: .github
 
 repository:
-  description: ":art: My base blueprint."
-  topics: "ivank, blueprint, accelerator, base"
+  description: ":art: AWS Resource Compute."
+  topics: "ivank, aws, compute"
   private: false
   has_issues: true
   has_projects: false
