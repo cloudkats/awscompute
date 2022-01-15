@@ -47,7 +47,7 @@ func rdsAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
 }
 
 func rdsOfferings(key string) ComputeResources {
-	rdsTypes := map[string]ComputeResources{
+	result := map[string]ComputeResources{
 		"db.t3.micro":   ComputeResources{CPU: 2, Memory: 1},
 		"db.t3.small":   ComputeResources{CPU: 2, Memory: 2},
 		"db.t3.medium":  ComputeResources{CPU: 2, Memory: 4},
@@ -57,6 +57,6 @@ func rdsOfferings(key string) ComputeResources {
 		"db.t4g.small":  ComputeResources{CPU: 2, Memory: 2},
 		"db.t4g.medium": ComputeResources{CPU: 2, Memory: 4},
 	}
-	return rdsTypes[key]
+	return result[key]
 
 }

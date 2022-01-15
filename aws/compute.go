@@ -43,6 +43,8 @@ func (cmp Compute) ComputeResourcesByType(resource string) (*ComputeOutput, erro
 		return lambdaAnalyzer(cmp.Context, cmp.Config)
 	case "rds":
 		return rdsAnalyzer(cmp.Context, cmp.Config)
+	case "redshift":
+		return redshiftAnalyzer(cmp.Context, cmp.Config)
 	default:
 		return nil, fmt.Errorf("resource type is not (yet) supported: %s", resource)
 	}
