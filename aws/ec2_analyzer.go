@@ -36,24 +36,30 @@ func ec2Analyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
 			iType := fmt.Sprintf("%v", i.InstanceType)
 			iTypesMap[iType] = ComputeResources{
 				CPU:    int(*i.VCpuInfo.DefaultVCpus),
-				Memory: int(*i.MemoryInfo.SizeInMiB / 1024),
+				Memory: int(*i.MemoryInfo.SizeInMiB),
 			}
 		}
 	}
 
+	// fmt.Println(iMap)
+	// fmt.Println(iTypes)
+
 	iCPU := 0
 	iMemory := 0
+	instances := 0
 
 	for iType, count := range iMap {
 		cpu := iTypesMap[iType].CPU
 		memory := iTypesMap[iType].Memory
 		iCPU += cpu * count
 		iMemory += memory * count
+		instances += count
 	}
 	return &ComputeOutput{
 		CPU:    iCPU,
-		Memory: iMemory,
+		Memory: iMemory / 1024,
 		Type:   "ec2",
+		Count:  instances,
 	}, nil
 }
 

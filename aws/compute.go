@@ -28,12 +28,21 @@ type ComputeOutput struct {
 	CPU    int
 	Memory int
 	Type   string
+	Count  int
 }
+
+const (
+	MaxItems = 50
+)
 
 func (cmp Compute) ComputeResourcesByType(resource string) (*ComputeOutput, error) {
 	switch resource {
 	case "ec2":
 		return ec2Analyzer(cmp.Context, cmp.Config)
+	case "lambda":
+		return lambdaAnalyzer(cmp.Context, cmp.Config)
+	case "rds":
+		return rdsAnalyzer(cmp.Context, cmp.Config)
 	default:
 		return nil, fmt.Errorf("resource type is not (yet) supported: %s", resource)
 	}
