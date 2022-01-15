@@ -15,3 +15,15 @@ hooks: ## Setup pre commit.
 
 validate: ## Validate files with pre-commit hooks
 	@pre-commit run --all-files
+
+deps: ## Update dependencies
+	@go mod tidy
+
+build: ## Build go libraries
+	@go build main.go
+
+run-help:## Run help
+	@go run main.go context --help
+
+run: ## Run cli
+	@aws-vault exec hbi-dev -- go run main.go

@@ -26,6 +26,12 @@
 
 ---
 
+## Go How To
+
+- [Migrate to Go V2](https://aws.github.io/aws-sdk-go-v2/docs/migrating/)
+
+---
+
 ## Create
 
 [**Create a repository using this template →**][template.generate]
