@@ -3,6 +3,8 @@
 Compute AWS CPU and Memory resources.
 `awscompute` supports listing of [4 types of resources](#supported-resources)
 
+![example output](./docs/example-output.png)
+
 ---
 
 ![](https://img.shields.io/github/commit-activity/m/cloudkats/awscompute)

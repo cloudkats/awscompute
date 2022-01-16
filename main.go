@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"awscompute/internal"
+	. "awscompute/internal"
 
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/fatih/color"
@@ -18,7 +18,7 @@ import (
 
 func main() {
 	var saveToFile bool
-	var resources internal.CommaSeparatedListFlag
+	var resources CommaSeparatedListFlag
 
 	flags := flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 	flags.Usage = func() {
@@ -36,18 +36,18 @@ func main() {
 		return
 	}
 
-	err := internal.MatchSupportedTypes(resources)
+	err := MatchSupportedTypes(resources)
 	if err != nil {
-		checkError("resources", err)
+		CheckError("resources", err)
 	}
 
 	cfg, err := config.LoadDefaultConfig(context.TODO())
-	checkError("Error: failed to call", err)
+	CheckError("Error: failed to call", err)
 
 	ctx := context.TODO()
 	cmp := compute.New(ctx, cfg)
 	acc, err := cmp.AccountAnalyzer()
-	checkError("iam", err)
+	CheckError("iam", err)
 
 	// done: ec2, lambda, rds, redshift
 	data := make([][]string, 0)
@@ -56,7 +56,7 @@ func main() {
 
 	for _, res := range resources {
 		result, err := cmp.ComputeResourcesByType(res)
-		checkError(res, err)
+		CheckError(res, err)
 		_, _ = fmt.Fprint(os.Stdout, color.YellowString("\tType: %s ::  ", strings.ToUpper(result.Type)),
 			color.BlueString("Count: %d. ", result.Count),
 			color.GreenString("CPU: %d. Memory: %d GiB\n", result.CPU, result.Memory))
@@ -66,26 +66,15 @@ func main() {
 	}
 
 	if saveToFile {
-		fw := internal.FileWriter{}
+		fw := FileWriter{}
 		file := fmt.Sprintf("data/%s.csv", acc.Account)
 		err = fw.WriteToFile(file, data)
 		if err != nil {
-			exitErrorf("Write to file", err)
+			ExitErrorf("Write to file", err)
 		}
 	}
 	_, _ = fmt.Fprint(os.Stdout,
-		color.MagentaString("\tTOTAL::CPU: %d. Memory: %d GiB\n", totalCPU, totalMemory))
-}
-
-func checkError(message string, err error) {
-	if err != nil {
-		exitErrorf(message, err)
-	}
-}
-
-func exitErrorf(msg string, args ...interface{}) {
-	_, _ = fmt.Fprint(os.Stderr, color.RedString("%s: %s\n", msg, args))
-	os.Exit(1)
+		color.MagentaString("\t\tTOTAL::CPU: %d. Memory: %d GiB\n", totalCPU, totalMemory))
 }
 
 func printHelp(fs *flag.FlagSet) {

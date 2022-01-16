@@ -3,6 +3,9 @@ package internal
 import (
 	"errors"
 	"fmt"
+	"os"
+
+	"github.com/fatih/color"
 )
 
 var supported = map[string]bool{
@@ -20,4 +23,15 @@ func MatchSupportedTypes(resources []string) error {
 		}
 	}
 	return nil
+}
+
+func CheckError(message string, err error) {
+	if err != nil {
+		ExitErrorf(message, err)
+	}
+}
+
+func ExitErrorf(msg string, args ...interface{}) {
+	_, _ = fmt.Fprint(os.Stderr, color.RedString("%s: %s\n", msg, args))
+	os.Exit(1)
 }
