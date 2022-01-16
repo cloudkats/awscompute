@@ -9,7 +9,7 @@ import (
 )
 
 func redshiftAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
-	fmt.Println("RDS Analyzer")
+	// fmt.Println("RDS Analyzer")
 
 	svc := redshift.NewFromConfig(cfg)
 	p := &redshift.DescribeClustersInput{MaxRecords: aws.Int32(100)}

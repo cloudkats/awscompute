@@ -9,7 +9,7 @@ import (
 )
 
 func rdsAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
-	fmt.Println("RDS Analyzer")
+	// fmt.Println("RDS Analyzer")
 
 	svc := rds.NewFromConfig(cfg)
 	p := &rds.DescribeDBInstancesInput{MaxRecords: aws.Int32(100)}
@@ -35,9 +35,6 @@ func rdsAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
 			iMemory += info.Memory
 		}
 	}
-
-	fmt.Println(iMap)
-
 	return &ComputeOutput{
 		CPU:    iCPU,
 		Memory: iMemory,

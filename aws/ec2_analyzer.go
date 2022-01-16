@@ -10,7 +10,7 @@ import (
 )
 
 func ec2Analyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
-	fmt.Println("EC2 Analyzer")
+	// fmt.Println("EC2 Analyzer")
 
 	svc := ec2.NewFromConfig(cfg)
 	input := &ec2.DescribeInstancesInput{}

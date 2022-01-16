@@ -2,14 +2,13 @@ package aws
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/lambda"
 )
 
 func lambdaAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
-	fmt.Println("Lambda Analyzer")
+	// fmt.Println("Lambda Analyzer")
 
 	svc := lambda.NewFromConfig(cfg)
 	p := &lambda.ListFunctionsInput{MaxItems: aws.Int32(MaxItems)}
