@@ -33,13 +33,16 @@ func main() {
 		return
 	}
 
+	err := internal.MatchSupportedTypes(resources)
+	if err != nil {
+		checkError("resources", err)
+	}
+
 	cfg, err := config.LoadDefaultConfig(context.TODO())
 	checkError("Error: failed to call", err)
 
 	ctx := context.TODO()
-
 	cmp := compute.New(ctx, cfg)
-
 	acc, err := cmp.AccountAnalyzer()
 	checkError("iam", err)
 

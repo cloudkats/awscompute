@@ -13,9 +13,7 @@ func ec2Analyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
 	// fmt.Println("EC2 Analyzer")
 
 	svc := ec2.NewFromConfig(cfg)
-	input := &ec2.DescribeInstancesInput{}
-
-	p := ec2.NewDescribeInstancesPaginator(svc, input)
+	p := ec2.NewDescribeInstancesPaginator(svc, &ec2.DescribeInstancesInput{})
 	iMap := map[string]int{}
 	iTypes, err := instances(ctx, p, iMap)
 	if err != nil {

@@ -11,8 +11,7 @@ func lambdaAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error)
 	// fmt.Println("Lambda Analyzer")
 
 	svc := lambda.NewFromConfig(cfg)
-	p := &lambda.ListFunctionsInput{MaxItems: aws.Int32(MaxItems)}
-	l := lambda.NewListFunctionsPaginator(svc, p)
+	l := lambda.NewListFunctionsPaginator(svc, &lambda.ListFunctionsInput{MaxItems: aws.Int32(MaxItems)})
 
 	memCombined := 0
 	count := 0
