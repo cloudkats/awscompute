@@ -1,7 +1,10 @@
 # AWS Compute
 
 Compute AWS CPU and Memory resources.
-`awscompute` supports listing of [4 types of resources](#supported-resources)
+`awscompute` supports listing of [4 types of resources](#supported-resources).
+
+Why this project exist:
+- [Dynatrace Pricing](https://www.dynatrace.com/pricing/) is based on Memory per host, this should provide a rough idea how much its about to cost.
 
 ![example output](./docs/example-output.png)
 
