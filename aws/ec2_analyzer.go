@@ -11,7 +11,12 @@ import (
 
 func ec2Analyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
 	svc := ec2.NewFromConfig(cfg)
-	p := ec2.NewDescribeInstancesPaginator(svc, &ec2.DescribeInstancesInput{})
+	// TODO: turn it off this check or add terminated
+	p := ec2.NewDescribeInstancesPaginator(svc, &ec2.DescribeInstancesInput{
+		// Filters: []types.Filter{
+		// 	{Name: aws.String("instance-state-name"), Values: []string{"running", "terminated", "stopped"}},
+		// },
+	})
 	iMap := map[string]int{}
 	iTypes, err := instances(ctx, p, iMap)
 	if err != nil {
@@ -44,6 +49,9 @@ func ec2Analyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
 	for iType, count := range iMap {
 		cpu := iTypesMap[iType].CPU
 		memory := iTypesMap[iType].Memory
+		if cpu == 0 || memory == 0 {
+			return nil, fmt.Errorf("for type %s data not found", iType)
+		}
 		iCPU += cpu * count
 		iMemory += memory * count
 		instances += count
@@ -66,8 +74,12 @@ func instances(ctx context.Context, p *ec2.DescribeInstancesPaginator, iMap map[
 		for _, reservations := range resp.Reservations {
 			for _, i := range reservations.Instances {
 				iType := fmt.Sprintf("%v", i.InstanceType)
+				_, isPresent := iMap[iType]
+				if !isPresent {
+					// only add to list of types if not already there
+					result = append(result, types.InstanceType(iType))
+				}
 				iMap[iType]++
-				result = append(result, types.InstanceType(iType))
 			}
 		}
 	}
