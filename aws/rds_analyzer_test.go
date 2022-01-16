@@ -21,6 +21,14 @@ func TestSupportedRDSOfferings(t *testing.T) {
 			input:    "db.t4g.medium",
 			expected: ComputeResources{CPU: 2, Memory: 4},
 		},
+		{
+			input:    "db.m5.large",
+			expected: ComputeResources{CPU: 2, Memory: 8},
+		},
+		{
+			input:    "db.r6g.large",
+			expected: ComputeResources{CPU: 2, Memory: 8},
+		},
 	}
 
 	for _, tt := range cases {

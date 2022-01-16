@@ -53,6 +53,8 @@ func rdsOfferings(key string) (*ComputeResources, error) {
 		"db.t3.2xlarge": {CPU: 8, Memory: 32},
 		"db.t4g.small":  {CPU: 2, Memory: 2},
 		"db.t4g.medium": {CPU: 2, Memory: 4},
+		"db.m5.large":   {CPU: 2, Memory: 8},
+		"db.r6g.large":  {CPU: 4, Memory: 32},
 	}
 	value, isPresent := result[key]
 	if isPresent {

@@ -17,12 +17,15 @@ import (
 )
 
 func main() {
+	var saveToFile bool
 	var resources internal.CommaSeparatedListFlag
 
 	flags := flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 	flags.Usage = func() {
 		printHelp(flags)
 	}
+
+	flags.BoolVar(&saveToFile, "save", false, "Enable persistence, save to file")
 	flags.VarP(&resources, "resources", "r", "Comma-separated list of resources to compute CPU/Memory")
 
 	_ = flags.Parse(os.Args[0:])
@@ -53,8 +56,7 @@ func main() {
 
 	for _, res := range resources {
 		result, err := cmp.ComputeResourcesByType(res)
-		checkError("ec2", err)
-
+		checkError(res, err)
 		_, _ = fmt.Fprint(os.Stdout, color.YellowString("\tType: %s ::  ", strings.ToUpper(result.Type)),
 			color.BlueString("Count: %d. ", result.Count),
 			color.GreenString("CPU: %d. Memory: %d GiB\n", result.CPU, result.Memory))
@@ -63,11 +65,13 @@ func main() {
 		totalCPU += result.CPU
 	}
 
-	fw := internal.FileWriter{}
-	file := fmt.Sprintf("data/%s.csv", acc.Account)
-	err = fw.WriteToFile(file, data)
-	if err != nil {
-		exitErrorf("Write to file", err)
+	if saveToFile {
+		fw := internal.FileWriter{}
+		file := fmt.Sprintf("data/%s.csv", acc.Account)
+		err = fw.WriteToFile(file, data)
+		if err != nil {
+			exitErrorf("Write to file", err)
+		}
 	}
 	_, _ = fmt.Fprint(os.Stdout,
 		color.MagentaString("\tTOTAL::CPU: %d. Memory: %d GiB\n", totalCPU, totalMemory))
