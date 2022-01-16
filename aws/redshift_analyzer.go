@@ -48,12 +48,15 @@ func redshiftAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, erro
 
 func redshiftOfferings(key string) ComputeResources {
 	result := map[string]ComputeResources{
-		"ds2.xlarge":  ComputeResources{CPU: 4, Memory: 31},
-		"ds2.8xlarge": ComputeResources{CPU: 36, Memory: 244},
-		"dc2.large":   ComputeResources{CPU: 2, Memory: 15},
-		"dc2.8xlarge": ComputeResources{CPU: 32, Memory: 244},
-		"dc1.large":   ComputeResources{CPU: 2, Memory: 15},
-		"dc1.8xlarge": ComputeResources{CPU: 32, Memory: 244},
+		"ds2.xlarge":   ComputeResources{CPU: 4, Memory: 31},
+		"ds2.8xlarge":  ComputeResources{CPU: 36, Memory: 244},
+		"dc2.large":    ComputeResources{CPU: 2, Memory: 15},
+		"dc2.8xlarge":  ComputeResources{CPU: 32, Memory: 244},
+		"dc1.large":    ComputeResources{CPU: 2, Memory: 15},
+		"dc1.8xlarge":  ComputeResources{CPU: 32, Memory: 244},
+		"ra3.xlplus":   ComputeResources{CPU: 4, Memory: 32},
+		"ra3.4xlarge":  ComputeResources{CPU: 12, Memory: 96},
+		"ra3.16xlarge": ComputeResources{CPU: 48, Memory: 384},
 	}
 	return result[key]
 
