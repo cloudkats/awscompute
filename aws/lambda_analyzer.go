@@ -8,8 +8,6 @@ import (
 )
 
 func lambdaAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
-	// fmt.Println("Lambda Analyzer")
-
 	svc := lambda.NewFromConfig(cfg)
 	l := lambda.NewListFunctionsPaginator(svc, &lambda.ListFunctionsInput{MaxItems: aws.Int32(MaxItems)})
 

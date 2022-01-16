@@ -58,7 +58,7 @@ func main() {
 		fmt.Fprint(os.Stdout, color.YellowString("\tType: %s ::  ", strings.ToUpper(result.Type)),
 			color.BlueString("Count: %d. ", result.Count),
 			color.GreenString("CPU: %d. Memory: %d GiB\n", result.CPU, result.Memory))
-		data = append(data, []string{acc.Account, acc.Aliases, res, strconv.Itoa(result.CPU), strconv.Itoa(result.Memory)})
+		data = append(data, []string{acc.Account, acc.Aliases, res, strconv.Itoa(result.Count), strconv.Itoa(result.CPU), strconv.Itoa(result.Memory)})
 		totalMemory += result.Memory
 		totalCPU += result.CPU
 	}

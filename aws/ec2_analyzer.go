@@ -10,8 +10,6 @@ import (
 )
 
 func ec2Analyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
-	// fmt.Println("EC2 Analyzer")
-
 	svc := ec2.NewFromConfig(cfg)
 	p := ec2.NewDescribeInstancesPaginator(svc, &ec2.DescribeInstancesInput{})
 	iMap := map[string]int{}
@@ -38,9 +36,6 @@ func ec2Analyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
 			}
 		}
 	}
-
-	// fmt.Println(iMap)
-	// fmt.Println(iTypes)
 
 	iCPU := 0
 	iMemory := 0

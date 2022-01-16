@@ -18,7 +18,7 @@ func (fw FileWriter) WriteToFile(path string, input [][]string) error {
 	}
 	data := [][]string{
 		{
-			"AccountID", "AccountAlias", "Type", "CPU", "Memory",
+			"AccountID", "AccountAlias", "Type", "Count", "CPU", "Memory",
 		},
 	}
 	for _, i := range input {

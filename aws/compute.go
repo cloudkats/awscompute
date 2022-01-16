@@ -13,10 +13,7 @@ type Compute struct {
 }
 
 func New(ctx context.Context, cfg aws.Config) *Compute {
-	return &Compute{
-		ctx,
-		cfg,
-	}
+	return &Compute{ctx, cfg}
 }
 
 type ComputeResources struct {
