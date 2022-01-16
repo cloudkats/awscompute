@@ -7,12 +7,13 @@ import (
 	"strconv"
 	"strings"
 
-	"awsconfig/internal"
+	"awscompute/internal"
+
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/fatih/color"
 	flag "github.com/spf13/pflag"
 
-	compute "awsconfig/aws"
+	compute "awscompute/aws"
 )
 
 func main() {
@@ -28,7 +29,6 @@ func main() {
 	args := flags.Args()
 
 	if len(args) == 0 {
-		fmt.Fprint(os.Stderr, color.RedString("Error: resource types expected\n"))
 		printHelp(flags)
 		return
 	}
@@ -55,7 +55,7 @@ func main() {
 		result, err := cmp.ComputeResourcesByType(res)
 		checkError("ec2", err)
 
-		fmt.Fprint(os.Stdout, color.YellowString("\tType: %s ::  ", strings.ToUpper(result.Type)),
+		_, _ = fmt.Fprint(os.Stdout, color.YellowString("\tType: %s ::  ", strings.ToUpper(result.Type)),
 			color.BlueString("Count: %d. ", result.Count),
 			color.GreenString("CPU: %d. Memory: %d GiB\n", result.CPU, result.Memory))
 		data = append(data, []string{acc.Account, acc.Aliases, res, strconv.Itoa(result.Count), strconv.Itoa(result.CPU), strconv.Itoa(result.Memory)})
@@ -69,7 +69,7 @@ func main() {
 	if err != nil {
 		exitErrorf("Write to file", err)
 	}
-	fmt.Fprint(os.Stdout,
+	_, _ = fmt.Fprint(os.Stdout,
 		color.MagentaString("\tTOTAL::CPU: %d. Memory: %d GiB\n", totalCPU, totalMemory))
 }
 
@@ -80,12 +80,12 @@ func checkError(message string, err error) {
 }
 
 func exitErrorf(msg string, args ...interface{}) {
-	fmt.Fprint(os.Stderr, color.RedString("%s: %s\n", msg, args))
+	_, _ = fmt.Fprint(os.Stderr, color.RedString("%s: %s\n", msg, args))
 	os.Exit(1)
 }
 
 func printHelp(fs *flag.FlagSet) {
-	fmt.Fprintf(os.Stderr, "\n"+strings.TrimSpace(help)+"\n")
+	_, _ = fmt.Fprintf(os.Stderr, "\n"+strings.TrimSpace(help)+"\n")
 	fs.PrintDefaults()
 }
 
