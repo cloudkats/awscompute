@@ -64,7 +64,7 @@ func main() {
 	}
 
 	fw := internal.FileWriter{}
-	file := fmt.Sprintf("data/%s/compute.csv", acc.Account)
+	file := fmt.Sprintf("data/%s.csv", acc.Account)
 	err = fw.WriteToFile(file, data)
 	if err != nil {
 		exitErrorf("Write to file", err)

@@ -26,4 +26,4 @@ run-help:## Run help
 	@go run main.go context --help
 
 run: ## Run cli
-	@aws-vault exec hbi-dev -- go run main.go
+	@go run main.go --resources ec2,lambda,rds,redshift
