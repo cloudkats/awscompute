@@ -9,8 +9,6 @@ import (
 )
 
 func rdsAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
-	// fmt.Println("RDS Analyzer")
-
 	svc := rds.NewFromConfig(cfg)
 	l := rds.NewDescribeDBInstancesPaginator(svc, &rds.DescribeDBInstancesInput{MaxRecords: aws.Int32(100)})
 
@@ -29,7 +27,10 @@ func rdsAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
 			iType := fmt.Sprintf("%v", *i.DBInstanceClass)
 			iMap[iType]++
 			count++
-			info := rdsOfferings(iType)
+			info, err := rdsOfferings(iType)
+			if err != nil {
+				return nil, err
+			}
 			iCPU += info.CPU
 			iMemory += info.Memory
 		}
@@ -42,17 +43,20 @@ func rdsAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
 	}, nil
 }
 
-func rdsOfferings(key string) ComputeResources {
+func rdsOfferings(key string) (*ComputeResources, error) {
 	result := map[string]ComputeResources{
-		"db.t3.micro":   ComputeResources{CPU: 2, Memory: 1},
-		"db.t3.small":   ComputeResources{CPU: 2, Memory: 2},
-		"db.t3.medium":  ComputeResources{CPU: 2, Memory: 4},
-		"db.t3.large":   ComputeResources{CPU: 2, Memory: 8},
-		"db.t3.xlarge":  ComputeResources{CPU: 4, Memory: 16},
-		"db.t3.2xlarge": ComputeResources{CPU: 8, Memory: 32},
-		"db.t4g.small":  ComputeResources{CPU: 2, Memory: 2},
-		"db.t4g.medium": ComputeResources{CPU: 2, Memory: 4},
+		"db.t3.micro":   {CPU: 2, Memory: 1},
+		"db.t3.small":   {CPU: 2, Memory: 2},
+		"db.t3.medium":  {CPU: 2, Memory: 4},
+		"db.t3.large":   {CPU: 2, Memory: 8},
+		"db.t3.xlarge":  {CPU: 4, Memory: 16},
+		"db.t3.2xlarge": {CPU: 8, Memory: 32},
+		"db.t4g.small":  {CPU: 2, Memory: 2},
+		"db.t4g.medium": {CPU: 2, Memory: 4},
 	}
-	return result[key]
-
+	value, isPresent := result[key]
+	if isPresent {
+		return &value, nil
+	}
+	return nil, fmt.Errorf("type %v not supported", key)
 }
