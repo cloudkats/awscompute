@@ -1,5 +1,8 @@
 # AWS Compute
 
+Compute AWS CPU and Memory resources.
+`awscompute` supports listing of [4 types of resources](#supported-resources)
+
 ---
 
 ![](https://img.shields.io/github/commit-activity/m/cloudkats/awscompute)
@@ -20,6 +23,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Contents
 
+- [Supported resources](#supported-resources)
 - [Create](#create)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -29,6 +33,19 @@
 ## Go How To
 
 - [Migrate to Go V2](https://aws.github.io/aws-sdk-go-v2/docs/migrating/)
+
+---
+
+## Supported resources
+
+Currently, 4 resource types across multiple services in the table below can be computed e.g. CPU and Memory
+
+| Service / Type | Supported |
+| :------------- | :--: |
+| ec2 | ✅ |
+| redshift | ✅ |
+| lambda | ✅ |
+| rds | ✅ |
 
 ---
 
