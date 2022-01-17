@@ -40,10 +40,11 @@ func redshiftAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, erro
 	}
 
 	return &ComputeOutput{
-		CPU:    iCPU,
-		Memory: iMemory,
-		Type:   "redshift",
-		Count:  instances,
+		CPU:       iCPU,
+		Memory:    iMemory,
+		Type:      "redshift",
+		Count:     instances,
+		Resources: iMap,
 	}, nil
 }
 

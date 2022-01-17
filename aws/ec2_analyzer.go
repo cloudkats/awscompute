@@ -57,10 +57,11 @@ func ec2Analyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
 		instances += count
 	}
 	return &ComputeOutput{
-		CPU:    iCPU,
-		Memory: iMemory / 1024,
-		Type:   "ec2",
-		Count:  instances,
+		CPU:       iCPU,
+		Memory:    iMemory / 1024,
+		Type:      "ec2",
+		Count:     instances,
+		Resources: iMap,
 	}, nil
 }
 

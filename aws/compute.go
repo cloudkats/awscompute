@@ -22,10 +22,11 @@ type ComputeResources struct {
 }
 
 type ComputeOutput struct {
-	CPU    int
-	Memory int
-	Type   string
-	Count  int
+	CPU       int
+	Memory    int
+	Type      string
+	Count     int
+	Resources map[string]int
 }
 
 const (

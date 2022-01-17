@@ -26,9 +26,10 @@ func lambdaAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error)
 	}
 
 	return &ComputeOutput{
-		CPU:    0,
-		Memory: memCombined / 1024,
-		Type:   "lambda",
-		Count:  count,
+		CPU:       0,
+		Memory:    memCombined / 1024,
+		Type:      "lambda",
+		Count:     count,
+		Resources: nil,
 	}, nil
 }

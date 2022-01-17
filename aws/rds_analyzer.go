@@ -36,10 +36,11 @@ func rdsAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, error) {
 		}
 	}
 	return &ComputeOutput{
-		CPU:    iCPU,
-		Memory: iMemory,
-		Type:   "rds",
-		Count:  count,
+		CPU:       iCPU,
+		Memory:    iMemory,
+		Type:      "rds",
+		Count:     count,
+		Resources: iMap,
 	}, nil
 }
 
