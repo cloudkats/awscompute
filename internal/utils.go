@@ -13,6 +13,7 @@ var supported = map[string]bool{
 	"lambda":   true,
 	"rds":      true,
 	"redshift": true,
+	"kafka":    true,
 }
 
 func MatchSupportedTypes(resources []string) error {

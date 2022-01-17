@@ -51,6 +51,7 @@ Currently, 4 resource types across multiple services in the table below can be c
 | redshift | ✅ |
 | lambda | ✅ |
 | rds | ✅ |
+| kafka | ✅ |
 
 ---
 
