@@ -52,6 +52,7 @@ Currently, 4 resource types across multiple services in the table below can be c
 | lambda | ✅ |
 | rds | ✅ |
 | kafka | ✅ |
+| opensearch | ✅ |
 
 ---
 

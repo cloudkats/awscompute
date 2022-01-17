@@ -9,6 +9,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/iam v1.16.0
 	github.com/aws/aws-sdk-go-v2/service/kafka v1.14.0
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.17.0
+	github.com/aws/aws-sdk-go-v2/service/opensearch v1.7.0
 	github.com/aws/aws-sdk-go-v2/service/rds v1.16.0
 	github.com/aws/aws-sdk-go-v2/service/redshift v1.19.0
 	github.com/aws/aws-sdk-go-v2/service/sts v1.14.0

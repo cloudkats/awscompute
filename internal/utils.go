@@ -9,11 +9,12 @@ import (
 )
 
 var supported = map[string]bool{
-	"ec2":      true,
-	"lambda":   true,
-	"rds":      true,
-	"redshift": true,
-	"kafka":    true,
+	"ec2":        true,
+	"lambda":     true,
+	"rds":        true,
+	"redshift":   true,
+	"kafka":      true,
+	"opensearch": true,
 }
 
 func MatchSupportedTypes(resources []string) error {

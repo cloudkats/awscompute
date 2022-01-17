@@ -22,6 +22,8 @@ github.com/aws/aws-sdk-go-v2/service/kafka v1.14.0 h1:w0zxu2UMLOmxu2Blyi317fSGiv
 github.com/aws/aws-sdk-go-v2/service/kafka v1.14.0/go.mod h1:mmTxASAqKgJc2pl9UQYdnq8ZW2qv2+Ri4N0xPvsojDM=
 github.com/aws/aws-sdk-go-v2/service/lambda v1.17.0 h1:srsnTp5wXXOepYDIUQBT6l1vUPeX+7RCj/5HpQsgOKE=
 github.com/aws/aws-sdk-go-v2/service/lambda v1.17.0/go.mod h1:f455vPZOlCYuN4IYrjwVnaE7ZhUQroFD4SELrkbfibI=
+github.com/aws/aws-sdk-go-v2/service/opensearch v1.7.0 h1:6gvTyBOVzwjfUX31UxECdscfaEUFWnr1DO5E6TfBOWw=
+github.com/aws/aws-sdk-go-v2/service/opensearch v1.7.0/go.mod h1:deJ8xbaHW6RDL8cn21YECWO4F4rwLHGvlHMytJtPdGU=
 github.com/aws/aws-sdk-go-v2/service/rds v1.16.0 h1:xYxIpmqlnc+U/miylJaNmEty34MC4BmxpVOqkF2DFpo=
 github.com/aws/aws-sdk-go-v2/service/rds v1.16.0/go.mod h1:U1tzFmWLyt4AqSRLONL0RXcYsQg0huiInDdRmCecz1w=
 github.com/aws/aws-sdk-go-v2/service/redshift v1.19.0 h1:NgcFcGhD1/9xvtobfDNxyf8fv7MD873FwaIN0cI0Lc8=

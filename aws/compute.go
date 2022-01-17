@@ -45,6 +45,8 @@ func (cmp Compute) ComputeResourcesByType(resource string) (*ComputeOutput, erro
 		return redshiftAnalyzer(cmp.Context, cmp.Config)
 	case "kafka":
 		return kafkaAnalyzer(cmp.Context, cmp.Config)
+	case "opensearch":
+		return opensearchAnalyzer(cmp.Context, cmp.Config)
 	default:
 		return nil, fmt.Errorf("resource type is not (yet) supported: %s", resource)
 	}
