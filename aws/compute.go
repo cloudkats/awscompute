@@ -47,6 +47,8 @@ func (cmp Compute) ComputeResourcesByType(resource string) (*ComputeOutput, erro
 		return kafkaAnalyzer(cmp.Context, cmp.Config)
 	case "opensearch":
 		return opensearchAnalyzer(cmp.Context, cmp.Config)
+	case "elasticache":
+		return elasticacheAnalyzer(cmp.Context, cmp.Config)
 	default:
 		return nil, fmt.Errorf("resource type is not (yet) supported: %s", resource)
 	}
