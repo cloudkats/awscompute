@@ -16,6 +16,7 @@ var supported = map[string]bool{
 	"kafka":       true,
 	"opensearch":  true,
 	"elasticache": true,
+	"emr":         true,
 }
 
 func MatchSupportedTypes(resources []string) error {

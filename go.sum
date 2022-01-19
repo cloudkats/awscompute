@@ -16,6 +16,8 @@ github.com/aws/aws-sdk-go-v2/service/ec2 v1.28.0 h1:2laBfBPJmPIXSoB4vPFCIpYFyEoF
 github.com/aws/aws-sdk-go-v2/service/ec2 v1.28.0/go.mod h1:HoTu0hnXGafTpKIZQ60jw0ybhhCH1QYf20oL7GEJFdg=
 github.com/aws/aws-sdk-go-v2/service/elasticache v1.18.0 h1:iiT3m6bN6RcMdzuXl99G7TuI9FwR/PP0LNz897L6zBE=
 github.com/aws/aws-sdk-go-v2/service/elasticache v1.18.0/go.mod h1:ptgAvEiIHvlObz+kunVpC/mWScq6gGLQOXogcMWq4qU=
+github.com/aws/aws-sdk-go-v2/service/emr v1.15.0 h1:uJA1ETSu1GIJJU3K8bx+9dvLp1+//WFEsb1HqJCNtR4=
+github.com/aws/aws-sdk-go-v2/service/emr v1.15.0/go.mod h1:/J0FSWtiUXHUf4vf3MLIR8cgpRkEHnthkfAzVHy2TQ4=
 github.com/aws/aws-sdk-go-v2/service/iam v1.16.0 h1:A4sCxN1jRqmF90FXjYpai1H4z2jeii4USIh12PAv9VQ=
 github.com/aws/aws-sdk-go-v2/service/iam v1.16.0/go.mod h1:Nz3L2VG2bK1gJqZejQpBNpMHORGHre5GRAC2v8v8ZDM=
 github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.7.0 h1:4QAOB3KrvI1ApJK14sliGr3Ie2pjyvNypn/lfzDHfUw=

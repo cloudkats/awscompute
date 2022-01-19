@@ -38,7 +38,7 @@ func elasticacheAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, e
 	return &ComputeOutput{
 		CPU:       iCPU,
 		Memory:    iMemory,
-		Type:      "redis",
+		Type:      "elasticache",
 		Count:     instances,
 		Resources: iMap,
 	}, nil
@@ -47,6 +47,7 @@ func elasticacheAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, e
 func elasticacheOfferings(key string) (*ComputeResources, error) {
 	// TODO: do use more real number, as cache memory is float e.g. 1.34 and etc
 	result := map[string]ComputeResources{
+		"cache.t2.micro":  {CPU: 2, Memory: 1},
 		"cache.t3.small":  {CPU: 2, Memory: 2},
 		"cache.t3.medium": {CPU: 2, Memory: 3},
 	}

@@ -38,5 +38,5 @@ test: ## Run unit tests
 	go clean -testcache ${PKG_LIST}
 	go test -v -p 1 -short -race ${PKG_LIST}
 
-run: ## Run cli
-	@go run main.go --resources ec2,lambda,rds,redshift
+run: ## Run cli e.g. ec2,lambda,rds,redshift,kafka,opensearch,elasticache
+	@go run main.go --resources ec2,lambda,rds,redshift,kafka,opensearch,elasticache

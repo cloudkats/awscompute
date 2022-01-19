@@ -15,9 +15,8 @@ func opensearchAnalyzer(ctx context.Context, cfg aws.Config) (*ComputeOutput, er
 	if err != nil {
 		return nil, err
 	}
-	iCPU, iMemory := 0, 0
+	iCPU, iMemory, instances := 0, 0, 0
 	iMap := map[string]int{}
-	instances := 0
 
 	for _, domain := range ldn.DomainNames {
 		dm, err := svc.DescribeDomain(ctx, &opensearch.DescribeDomainInput{DomainName: domain.DomainName})
